@@ -1,7 +1,7 @@
 #Harsahil Basra CSC Internal
 #Sports program or basketball
 from tkinter import*
-from PIL import IMageTk, Image
+from PIL import ImageTk, Image
 
 window = Tk()
 window.rowconfigure(0, weight=1)
@@ -28,6 +28,12 @@ def show_frame(frame):
 show_frame(page0)
 
 # ========= Page 0 =========
+entry_btn = PhotoImage(file='oppen45.png')
+#Create label for button
+img_label = Label(image=entry_btn)
+
+btn0 = Button(page0, image=entry_btn, command=lambda: show_frame(page1), borderwidth=0)
+btn0.pack(pady=0)
 
 # ========= Page 1 =========
 
