@@ -19,7 +19,7 @@ page4 = Frame(window) #Advanced
 page5 = Frame(window) #Feedback
 page6 = Frame(window) #Profile
 
-for frame in (page0, page1, page1a, page1b, page2, page3, page4, page5, page6):
+for frame in (page0, page1, page1a, page2, page3, page4, page5, page6):
     frame.grid(row=0, column=0, sticky='nsew')
 
 def show_frame(frame):
@@ -27,7 +27,7 @@ def show_frame(frame):
 
 show_frame(page0)
 
-# ========= Page 0 =========
+# ========= Page 0 - Entry Page =========
 entry_btn = PhotoImage(file='oppen45.png')
 #Create label for button
 img_label = Label(image=entry_btn)
@@ -35,18 +35,78 @@ img_label = Label(image=entry_btn)
 btn0 = Button(page0, image=entry_btn, command=lambda: show_frame(page1), borderwidth=0)
 btn0.pack(pady=0)
 
-# ========= Page 1 =========
+# ========= Page 1 - Login =========
 
-# ========= Page 1a =========
+def signup_user():
+    username_data = username.get()
+    password_data = password.get()
 
-# ========= Page 1b =========
+    file=open(username_data, "w")
+    file.write(username_data+"\n")
+    file.write(password_data)
+    file.close()
 
-# ========= Page 2 =========
+    username_entry.delete(0, END)
+    password_entry.delete(0, END)
 
-# ========= Page 3 =========
+    Label(signuppage, text = "Registration Sucess", fg = "green").pack()
 
-# ========= Page 4 =========
+def signup():
+    global signuppage
+    signuppage = Toplevel()
+    signuppage.title("Sign Up")
+    signuppage.geometry("250x200")
 
-# ========= Page 5 =========
+    #global username & password so can be used for signup_user function
+    global username
+    global password
+    global username_entry
+    global password_entry
 
-# ========= Page 6 =========
+    username = StringVar()
+    password = StringVar()
+
+    Label(signuppage, text="Enter your details below").pack()
+    Label(signuppage, text="").pack()
+    
+    Label(signuppage, text="Username").pack()
+    username_entry = Entry(signuppage, textvariable = username)
+    username_entry.pack()
+
+    Label(signuppage, text="Password").pack()
+    password_entry = Entry(signuppage, textvariable = password)
+    password_entry.pack()
+    Button(signuppage, text="Register", command = signup_user).pack()
+    
+    
+
+
+
+#Create username entrybox
+Label(page1, text = "Username").pack()
+username_entry1 = Entry(page1)
+username_entry1.pack()
+#Create password entrybox
+Label(page1, text = "Password").pack()
+password_entry1 = Entry(page1)
+password_entry1.pack()
+#login button
+login_btn = Button(page1, text='LOGIN', font=('Arial', 13, 'bold'), command=lambda:show_frame(page2), borderwidth=0)
+login_btn.pack()
+#signup button
+pg1_button = Button(page1, text='SIGNUP', font=('Arial', 13, 'bold'), command=signup, borderwidth=0)
+pg1_button.pack()
+
+
+
+# ========= Page 1a - Signup =========
+
+# ========= Page 2 - Dashboard =========
+
+# ========= Page 3 - Beginner =========
+
+# ========= Page 4 - Advanced =========
+
+# ========= Page 5 - Feedback =========
+
+# ========= Page 6 - Profile =========
