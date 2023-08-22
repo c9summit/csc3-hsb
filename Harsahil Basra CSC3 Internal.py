@@ -173,14 +173,33 @@ def main_login():
 
 main_login()
 
-# ========= Page 1a - Signup =========
-
 # ========= Page 2 - Dashboard =========
+
+pag2_label = Label(page2, text='DRIVE', font=('Arial', 70, 'bold'))
+pag2_label.place(x=170, y=750)
+pag2_label1 = Label(page2, text='DASHBOARD', font=('Arial', 35, 'bold'))
+pag2_label1.place(x=30, y=700)
+
+beginner_button = PhotoImage(file='p0111.png')
+
+beg_button = Button(page2, image = beginner_button, command=lambda: show_frame(page3))
+beg_button.place(x=60, y=20)
+
+advanced_button = PhotoImage(file='adv1.png')
+
+adv_button = Button(page2, image=advanced_button, command=lambda:show_frame(page4))
+adv_button.place(x=60, y=360)
+
+profile_img = PhotoImage(file='profile.png')
+
+profile_button = Button(page2, image=profile_img, command=lambda:show_frame(page5))
+profile_button.place(x=500, y=720)
+
+
 
 # ========= Page 3 - Beginner =========
 
 # ========= Page 4 - Advanced =========
 
-# ========= Page 5 - Feedback =========
 
-# ========= Page 6 - Profile =========
+# ========= Page 5 - Profile =========
