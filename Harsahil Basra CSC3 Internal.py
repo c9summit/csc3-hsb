@@ -8,6 +8,7 @@ window = Tk()
 window.rowconfigure(0, weight=1)
 window.columnconfigure(0, weight=1)
 window.geometry("700x900")
+window.title("DRIVE")
 
 #Creating frames
 page0 = Frame(window) #Entry Page
@@ -198,8 +199,75 @@ profile_button.place(x=500, y=720)
 
 
 # ========= Page 3 - Beginner =========
+page3_button = Button(page3, text="Go Back", command=lambda:show_frame(page2)).place(x=0, y=0)
+
+Label(page3, text="    ").grid(row=0, column=1)
+Label(page3, text="    ").grid(row=1, column=1)
+Label(page3, text="    ").grid(row=2, column=1)
+
+Label(page3, text = "Total Points ").grid(row=3, column=0)
+totalpoints_entry = Entry(page3)
+totalpoints_entry.grid(row=3, column=1, padx=5, pady=3)
+
+Label(page3, text = "Total Rebounds ").grid(row=4, column=0)
+totalrebounds_entry = Entry(page3)
+totalrebounds_entry.grid(row=4, column=1, padx=5, pady=3)
+
+Label(page3, text = "Total Assists ").grid(row=5, column=0)
+totalassists_entry = Entry(page3)
+totalassists_entry.grid(row=5, column=1, padx=5, pady=3)
+
+Label(page3, text = "Total Steals ").grid(row=6, column=0)
+totalsteals_entry = Entry(page3)
+totalsteals_entry.grid(row=6, column=1, padx=5, pady=3)
+
+Label(page3, text = "Total Blocks ").grid(row=7, column=0)
+totalblocks_entry = Entry(page3)
+totalblocks_entry.grid(row=7, column=1, padx=5, pady=3)
+
+Label(page3, text = "Games Played ").grid(row=8, column=0)
+gp_entry = Entry(page3)
+gp_entry.grid(row=8, column=1, padx=5, pady=3)
+
+#function for calculation and feedback
+def calc():
+    pts = int(totalpoints_entry.get())
+    rbd = int(totalrebounds_entry.get())
+    ast = int(totalassists_entry.get())
+    stl = int(totalsteals_entry.get())
+    blk = int(totalblocks_entry.get())
+    gp = int(gp_entry.get())
+
+    fppg = float(pts/gp)
+    ppg = round(fppg, 1)
+    frpg = float(rbd/gp)
+    rpg = round(frpg, 1)
+    fapg = float(ast/gp)
+    apg = round(fapg, 1)
+    fspg = float(stl/gp)
+    spg = round(fspg, 1)
+    fbpg = float(blk/gp)
+    bpg = round(fbpg, 1)
+
+    
+    Label(page3, text="     ").grid(row=10, column=1)
+    Label(page3, text="     ").grid(row=11, column=1)
+    Label(page3, text=f"Points Per Game: {ppg}").grid(row=12, column=1)
+    Label(page3, text=f"Rebounds Per Game: {rpg}").grid(row=13, column=1)
+    Label(page3, text=f"Assists Per Game: {apg}").grid(row=14, column=1)
+    Label(page3, text=f"Steals Per Game: {spg}").grid(row=15, column=1)
+    Label(page3, text=f"Blocks Per Game: {bpg}").grid(row=16, column=1)
+
+calcbtn = Button(page3, text= 'Calculate', command=calc).grid(row=9, column=2)
+    
+
+
+
 
 # ========= Page 4 - Advanced =========
+page4_button = Button(page4, text="Go Back", command=lambda:show_frame(page2)).place(x=0, y=0)
 
 
 # ========= Page 5 - Profile =========
+page5_button = Button(page5, text="Go Back", command=lambda:show_frame(page2)).place(x=0, y=0)
+
