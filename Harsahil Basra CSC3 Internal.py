@@ -372,12 +372,102 @@ def advcalc():
     Label(page4, text=f"TS%: {TS}%").grid(row=9, column=4)
     Label(page4, text=f"FTR: {FTR}%").grid(row=10, column=4)
 
-    if position == 'Point Guard' and ppg<10 and apg<10:
+    #Feedback for each specifc response
+    #Point Guard
+    if position == 'Point Guard' and ppg<10 and apg<10 and TS<40:
         Label(text="As a point guard you must be able to move the ball around and create offense. Your stats show you are not doing so. To improve scoring do scoring drills,"
               "to improve passing get more ball iq", wraplength=600).place(x=50, y=500)
 
-    if position == 'Point Guard' and ppg>10 and apg>10 and spg>1:
-        Label(text="")
+    elif position == 'Point Guard' and ppg>10 and ts<40:
+         Label(text="Your scoring needs to be improved as you can score points but not efficently. This means you are minimisng your potential", wraplength=600).place(x=50, y=500)      
+    else:
+        Label(text="Offensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=500)
+
+    if position == 'Point Guard' and spg<2:
+        Label(text="Defensively you need to improve. Steals and blocks can turn a game around as it causes scoreless possession for opponent while providing an opportunity to score", wraplength=600).place(x=50, y=550)
+    else:
+        Label(text="Defensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=550)
+
+    if position == 'Point Guard' and tpm<2:
+        Label(text="As a point guard it is important to be able to stretch the floor, this is done by being able to shoot 3s. You need to work on this", wraplength=600).place(x=50, y=600)
+    else:
+        Label(text="Your ability to stretch the floor with your 3s are good but still can be improved via practice", wraplength=600).place(x=50, y=600)
+
+    #Shooting Guard
+    if position == 'Shooting Guard' and ppg<10 and apg<4 and TS<40:
+        Label(text="As a shooting guard you must be able to create offense and score at will which you currently aren't doing", wraplength=600).place(x=50, y=500)
+
+    elif position == 'Shooting Guard' and ppg>10 and ts<40:
+         Label(text="Your scoring needs to be improved as you can score points but not efficently. This means you are minimisng your potential", wraplength=600).place(x=50, y=500)      
+    else:
+        Label(text="Offensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=500)
+
+    if position == 'Shooting Guard' and spg<2:
+        Label(text="Defensively you need to improve. Steals and blocks can turn a game around as it causes scoreless possession for opponent while providing an opportunity to score", wraplength=600).place(x=50, y=550)
+    else:
+        Label(text="Defensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=550)
+
+    if position == 'Shooting Guard' and tpm<2:
+        Label(text="As a shooting guard it is important to be able to stretch the floor, this is done by being able to shoot 3s. You need to work on this", wraplength=600).place(x=50, y=600)
+    else:
+        Label(text="Your ability to stretch the floor with your 3s are good but still can be improved via practice", wraplength=600).place(x=50, y=600)
+
+    #Small Forward
+    if position == 'Small Forward' and ppg<8 and apg<2 and TS<40:
+        Label(text="As a small forward you need to be able to be a threat offensive which you are currently not doing. You need to practice.", wraplength=600).place(x=50, y=500)
+
+    elif position == 'Small Forward' and ppg>10 and ts<40:
+         Label(text="Your scoring needs to be improved as you can score points but not efficently. This means you are minimisng your potential", wraplength=600).place(x=50, y=500)      
+    else:
+        Label(text="Offensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=500)
+
+    if position == 'Small Forward' and spg<1 and bpg<1:
+        Label(text="Defensively you need to improve. Steals and blocks can turn a game around as it causes scoreless possession for opponent while providing an opportunity to score", wraplength=600).place(x=50, y=550)
+    else:
+        Label(text="Defensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=550)
+
+    if position == 'Small Forward' and fta<5:
+        Label(text="As a small forward it is important you drive and shoot free throws as it is the easiest way of getting points. You need to work on this", wraplength=600).place(x=50, y=600)
+    else:
+        Label(text="Your ability to draw contact and shoot free throws is good but still can be improved via practice", wraplength=600).place(x=50, y=600)
+
+    #Power Forward
+    if position == 'Power Forward' and ppg<6 and apg<2 and TS<40:
+        Label(text="As a power foward you should be able to be threat offensively by being able to score and find good passes for your team. You are not doing this.", wraplength=600).place(x=50, y=500)
+
+    elif position == 'Power Forward' and ppg>10 and ts<40:
+         Label(text="Your scoring needs to be improved as you can score points but not efficently. This means you are minimisng your potential", wraplength=600).place(x=50, y=500)      
+    else:
+        Label(text="Offensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=500)
+
+    if position == 'Power Forward' and bpg<2:
+        Label(text="Defensively you need to improve. Steals and blocks can turn a game around as it causes scoreless possession for opponent while providing an opportunity to score", wraplength=600).place(x=50, y=550)
+    else:
+        Label(text="Defensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=550)
+
+    if position == 'Power Forward' and FTR<25:
+        Label(text="As a power forward you should be able to head to the line by drawing contact in the pain. You need to work on this", wraplength=600).place(x=50, y=600)
+    else:
+        Label(text="Your ability to draw fouls is good but still can be improved via practice", wraplength=600).place(x=50, y=600)
+
+    #Center
+    if position == 'Center' and ppg<5 and apg<1 and TS<40:
+        Label(text="As a center you should be able to score when opportunity provided and be able to facilitate the ball. You are not doing this", wraplength=600).place(x=50, y=500)
+
+    elif position == 'Center' and ppg>10 and ts<40:
+         Label(text="Your scoring needs to be improved as you can score points but not efficently. This means you are minimisng your potential", wraplength=600).place(x=50, y=500)      
+    else:
+        Label(text="Offensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=500)
+
+    if position == 'Center' and bpg<2:
+        Label(text="Defensively you need to improve. Steals and blocks can turn a game around as it causes scoreless possession for opponent while providing an opportunity to score", wraplength=600).place(x=50, y=550)
+    else:
+        Label(text="Defensively you are playing well but improvement should still be sought for", wraplength=600).place(x=50, y=550)
+
+    if position == 'Center' and rpg<7:
+        Label(text="As a center it is important you secure rebounds for your team to gain possession. You need to work on this", wraplength=600).place(x=50, y=600)
+    else:
+        Label(text="Your ability to grab rebounds is good but still can be improved via practice", wraplength=600).place(x=50, y=600)
     
 
 advcalc_btn = Button(page4, text='Calculate', command = advcalc).grid(row=14, column=1)
