@@ -99,6 +99,7 @@ def signup_user():
 
 #function for verifying login with stored signup info
 def login_verify():
+    global username1
     username1 = username_verify.get()
     password1 = password_verify.get()
     username_entry1.delete(0, END)
@@ -144,7 +145,7 @@ def signup():
     Button(signuppage, text="Register", command = signup_user).pack()
     
     
-
+#function for the main login and signup page
 def main_login():
     global username_verify
     global password_verify
@@ -183,17 +184,25 @@ pag2_label1.place(x=30, y=700)
 
 beginner_button = PhotoImage(file='p0111.png')
 
+#making image button
 beg_button = Button(page2, image = beginner_button, command=lambda: show_frame(page3))
 beg_button.place(x=60, y=20)
 
 advanced_button = PhotoImage(file='adv1.png')
 
+#making image button
 adv_button = Button(page2, image=advanced_button, command=lambda:show_frame(page4))
 adv_button.place(x=60, y=360)
 
 profile_img = PhotoImage(file='profile.png')
 
-profile_button = Button(page2, image=profile_img, command=lambda:show_frame(page5))
+def profbut():
+    display_advanced_stats()
+    show_frame(page5)
+    
+
+#making image button
+profile_button = Button(page2, image=profile_img, command=profbut)
 profile_button.place(x=500, y=720)
 
 
@@ -267,7 +276,144 @@ calcbtn = Button(page3, text= 'Calculate', command=calc).grid(row=9, column=2)
 # ========= Page 4 - Advanced =========
 page4_button = Button(page4, text="Go Back", command=lambda:show_frame(page2)).place(x=0, y=0)
 
+Label(page4, text="    ").grid(row=0, column=1)
+Label(page4, text="    ").grid(row=1, column=1)
+Label(page4, text="    ").grid(row=2, column=1)
+
+Label(page4, text = "Total Points ").grid(row=3, column=0)
+advtotalpoints_entry = Entry(page4)
+advtotalpoints_entry.grid(row=3, column=1, padx=5, pady=3)
+
+Label(page4, text = "Total Rebounds ").grid(row=4, column=0)
+advtotalrebounds_entry = Entry(page4)
+advtotalrebounds_entry.grid(row=4, column=1, padx=5, pady=3)
+
+Label(page4, text = "Total Assists ").grid(row=5, column=0)
+advtotalassists_entry = Entry(page4)
+advtotalassists_entry.grid(row=5, column=1, padx=5, pady=3)
+
+Label(page4, text = "Total Steals ").grid(row=6, column=0)
+advtotalsteals_entry = Entry(page4)
+advtotalsteals_entry.grid(row=6, column=1, padx=5, pady=3)
+
+Label(page4, text = "Total Blocks ").grid(row=7, column=0)
+advtotalblocks_entry = Entry(page4)
+advtotalblocks_entry.grid(row=7, column=1, padx=5, pady=3)
+
+Label(page4, text = "Total Field Goal Made ").grid(row=8, column=0)
+advtotalfgm_entry = Entry(page4)
+advtotalfgm_entry.grid(row=8, column=1, padx=5, pady=3)
+
+Label(page4, text = "Total Field Goal Attempted ").grid(row=9, column=0)
+advtotalfga_entry = Entry(page4)
+advtotalfga_entry.grid(row=9, column=1, padx=5, pady=3)
+
+Label(page4, text = "Total Free Throws Attempted ").grid(row=10, column=0)
+advtotalfta_entry = Entry(page4)
+advtotalfta_entry.grid(row=10, column=1, padx=5, pady=3)
+
+Label(page4, text = "Total 3 Pointers Made ").grid(row=11, column=0)
+advtotalpm_entry = Entry(page4)
+advtotalpm_entry.grid(row=11, column=1, padx=5, pady=3)
+
+Label(page4, text = "Games Played ").grid(row=12, column=0)
+advgp_entry = Entry(page4)
+advgp_entry.grid(row=12, column=1, padx=5, pady=3)
+
+Label(page4, text = "Position ").grid(row=13, column=0)
+options = ["Point Guard", "Shooting Guard", "Small Forward", "Power Forward", "Center"]
+clicked=StringVar()
+drop = OptionMenu(page4, clicked, *options).grid(row=13, column=1, padx=5, pady=3)
+
+def advcalc():
+    #Getting user input from entry box and making variable
+    advpts = int(advtotalpoints_entry.get())
+    advrbd = int(advtotalrebounds_entry.get())
+    advast = int(advtotalassists_entry.get())
+    advstl = int(advtotalsteals_entry.get())
+    advblk = int(advtotalblocks_entry.get())
+    advgp = int(advgp_entry.get())
+    fgm = int(advtotalfgm_entry.get())
+    fga = int(advtotalfga_entry.get())
+    fta = int(advtotalfta_entry.get())
+    tpm = int(advtotalpm_entry.get())
+    global position
+    position = clicked.get()
+    
+    global ppg, rpg, apg, spg, bpg, eFG, TS, FTR
+    #Calculations + rounding
+    fppg = float(advpts/advgp)
+    ppg = round(fppg, 2)
+    frpg = float(advrbd/advgp)
+    rpg = round(frpg, 2)
+    fapg = float(advast/advgp)
+    apg = round(fapg, 2)
+    fspg = float(advstl/advgp)
+    spg = round(fspg, 2)
+    fbpg = float(advblk/advgp)
+    bpg = round(fppg, 2)
+    feFG = float(((fgm+(0.5*tpm))/fga)*100)
+    eFG = round(feFG, 2)
+    TSA = float(2*(fga+(0.475*fta)))
+    fTS = float((advpts/TSA)*100)
+    TS = round(fTS, 2)
+    fFTR = float((fta/fga)*100)
+    FTR = round(fFTR, 2)
+
+    Label(page4, text="       ").grid(row=3, column=2)
+    Label(page4, text="       ").grid(row=4, column=2)
+    Label(page4, text=f"PPG: {ppg}").grid(row=3, column=4)
+    Label(page4, text=f"RPG: {rpg}").grid(row=4, column=4)
+    Label(page4, text=f"APG: {apg}").grid(row=5, column=4)
+    Label(page4, text=f"SPG: {spg}").grid(row=6, column=4)
+    Label(page4, text=f"BPG: {bpg}").grid(row=7, column=4)
+    
+    Label(page4, text=f"eFG%: {eFG}%").grid(row=8, column=4)
+    Label(page4, text=f"TS%: {TS}%").grid(row=9, column=4)
+    Label(page4, text=f"FTR: {FTR}%").grid(row=10, column=4)
+
+    if position == 'Point Guard' and ppg<10 and apg<10:
+        Label(text="As a point guard you must be able to move the ball around and create offense. Your stats show you are not doing so. To improve scoring do scoring drills,"
+              "to improve passing get more ball iq", wraplength=600).place(x=50, y=500)
+
+    if position == 'Point Guard' and ppg>10 and apg>10 and spg>1:
+        Label(text="")
+    
+
+advcalc_btn = Button(page4, text='Calculate', command = advcalc).grid(row=14, column=1)
+
+
+def save_stats():
+    with open(f"{username1}_advanced_stats.txt", "w") as file:
+        file.write("PPG:" )
+        file.write(str(ppg )+"\n")
+        file.write("RPG:" )
+        file.write(str(rpg )+"\n")
+        file.write("APG:" )
+        file.write(str(apg )+"\n")
+        file.write("SPG:" )
+        file.write(str(spg )+"\n")
+        file.write("BPG:" )
+        file.write(str(bpg )+"\n")
+        file.write("eFG:" )
+        file.write(str(eFG )+"\n")
+        file.write("TS:" )
+        file.write(str(TS )+"\n")
+        file.write("FTR:" )
+        file.write(str(FTR )+"\n")
+        file.close()
+
+save_btn = Button(page4, text="Save", command = save_stats).grid(row=14, column=2)
+
 
 # ========= Page 5 - Profile =========
 page5_button = Button(page5, text="Go Back", command=lambda:show_frame(page2)).place(x=0, y=0)
+
+def display_advanced_stats():
+    with open(f"{username1}_advanced_stats.txt", "r") as file:
+        advanced_stats = file.read()
+    advanced_stats_label.config(text=advanced_stats)
+
+advanced_stats_label = Label(page5, text="", wraplength=600, justify="center")
+advanced_stats_label.pack(pady=20)
 
